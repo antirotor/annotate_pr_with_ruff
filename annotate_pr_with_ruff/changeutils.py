@@ -35,6 +35,7 @@ def get_changed_files(diff: str, suffix=".py") -> Dict[str, Set[int]]:
         if file_diff_lines[1].startswith("deleted"):
             continue
         elif file_diff_lines[1].startswith("new file"):
+            print(file_diff)
             assert file_diff_lines[2].startswith("index")
             assert file_diff_lines[3].startswith("---")
             assert file_diff_lines[4].startswith("+++ b/")
