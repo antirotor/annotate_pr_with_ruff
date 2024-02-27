@@ -36,8 +36,12 @@ def get_changed_files(diff: str, suffix=".py") -> Dict[str, Set[int]]:
             continue
         elif file_diff_lines[1].startswith("new file"):
             assert file_diff_lines[2].startswith("index")
-            assert file_diff_lines[3].startswith("---")
-            assert file_diff_lines[4].startswith("+++ b/")
+            try:
+                assert file_diff_lines[3].startswith("---")
+                assert file_diff_lines[4].startswith("+++ b/")
+            except IndexError:
+                # empty file
+                continue
             target_filepath = file_diff_lines[4][len("+++ b") :]
             remaining_lines = file_diff_lines[5:]
         elif file_diff_lines[1].startswith("index"):
