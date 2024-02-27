@@ -16,5 +16,5 @@ runs:
         stdout="${stdout//'%'/'%25'}"
         stdout="${stdout//$'\n'/'%0A'}"
         stdout="${stdout//$'\r'/'%0D'}"
-        echo "::set-output name=stdout::$stdout"
+        echo "name=stdout::$stdout" >> $GITHUB_OUTPUT
       shell: bash

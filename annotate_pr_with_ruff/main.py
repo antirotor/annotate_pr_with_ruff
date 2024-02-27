@@ -33,7 +33,6 @@ def main():
         for ruff_error in ruff_errors
         if f"/{ruff_error.file}" in changed_files
     ]
-    # print(f"::set-output name=num_errors::{len(ruff_errors)}")
     set_output("num_errors", str(len(ruff_errors)))
 
     # Submit review
